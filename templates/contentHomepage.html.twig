@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<section
+		id="pageUser">
+
+		{# Messages des formulaires #}
+		{% for msg in app.flashes('success') %}
+			<li id="success">{{ msg }}</li>
+		{% endfor %}
+
+		<article
+			id="formMessage">
+			{# Formulaire d'ajout d'un message #}
+			{{ form_start(formAddMessage) }}
+
+			<p>
+				{# Affichage des erreurs pour ce champ précis #}
+				{{ form_errors(formAddMessage.content) }}
+			</p>
+			<p>
+				{# Affichage de l'input #}
+				{{ form_widget(formAddMessage.content) }}
+			</p>
+
+			<p>
+				<button id="buttonMessage" type="submit">Poster le message</button>
+			</p>
+
+			{{ form_end(formAddMessage) }}
+		</article>
+
+		{% if listCommentMessageUser != null %}
+
+			<article>
+
+				<p id="textPost">Derniers messages postés :</p>
+
+				{% for messageComment in listCommentMessageUser %}
+
+					{% block message %}{% endblock %}
+
+				{% endfor %}
+
+			</article>
+
+		{% else %}
+			<p>Les membres n'ont pas encore poster de messages</p>
+		{% endif %}
+	</section>
+
+{% endblock %}

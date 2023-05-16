@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, user-scalable=no">
+		<title>SOS Harcel</title>
+	</head>
+	<body style="font-family: sans-serif">
+		<img src="{{ absolute_url(asset('images/logo.png')) }}" style="display: inline-block; vertical-align: middle">
+
+		<h3 style="display: inline-block; font-size: 30px">Sos Harcel</h3>
+
+		<h2 style="margin-top: 20px"></h2>
+
+		<p style="margin-top: 20px; font-size: 15px">
+
+			Bonjour
+			<span style="font-weight: bold">{{ mailComment.message.user.pseudo }}</span>
+			!<br>
+			<br>
+			Le membre
+			{{ mailComment.user.pseudo }}
+			vient de poster un nouveau commentaire sur votre message, celui à écrit :<br>
+			<br>
+			<h4>{{ mailComment.content }}</h4>
+			<br>
+			N'hésitez pas à venir répondre à son commentaire
+			<br>
+			<br>
+			A bientôt sur
+			<h3 style="display: inline-block; font-size: 30px">Sos Harcel</h3>
+
+		</p>
+	</body>
+</html>

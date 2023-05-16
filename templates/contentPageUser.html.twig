@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section id="pageUser">
+
+        {% if listCommentMessageUser != null %}
+
+            <article>
+
+                <p id="textPost">Vos messages :</p>
+
+                {% for messageComment in listCommentMessageUser %}
+
+                    {% block messageUser %}{% endblock %}
+
+                {% endfor %}
+
+            </article>
+
+        {% else %}
+            <p>Aucun message posté</p>
+        {% endif %}
+
+    </section>
+
+{% endblock %}

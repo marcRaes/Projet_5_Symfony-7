@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section id="account">
+
+        <article id="contentAccount">
+
+            <div id="descriptionSite">
+
+                <p><img src="{{ asset('images/desperate.jpg') }}" alt="stop isolement"></p>
+
+                <p>
+                    <strong>SOS HARCEL</strong> est une plateforme d'entraide pour les personnes victimes de harcèlement scolaire.
+                    Cette plateforme bien qu'ouverte nécessite la création d'un compte, ceci afin de préserver les choix de chacun dont
+                    tout membre est censé respecter.
+                    Tout membre postant sur cette plateforme restera anonyme mais pourra néanmoins être reconnu par les administrateurs
+                    par son adresse email.
+                </p>
+                <p>
+                    Ceci est un espace de liberté où chacun peut s'exprimer comme il le souhaite, ne l'oubliez pas.
+                </p>
+
+            </div>
+
+            {% block account %}{% endblock %}
+
+        </article>
+
+    </section>
+
+{% endblock %}

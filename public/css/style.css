@@ -1,0 +1,447 @@
+/* Animation bouton formulaire de connection */
+@keyframes AnimationButtonAccount {
+    from{
+        box-shadow:0 0 0 -3px hsla(0,0%,100%,0),0 0 0 0 hsl(44,66%,57%)
+
+    }
+    to{
+
+        box-shadow:0 0 0 5px hsla(0,0%,100%,0),0 0 0 8px hsla(0,0%,100%,0)}
+}
+
+/* Remise à zero des marges */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Body */
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'PT Sans', sans-serif;
+}
+
+/* Header */
+header h1, header a, #displayUser {
+    font-family: 'Kite One', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    padding: 5px 140px;
+    border-bottom: 4px solid #ff6600;
+}
+
+header p#logo {
+    border: 5px solid #ff6600;
+    border-radius: 5px;
+    transform: rotate(40deg);
+    width: 30px;
+}
+
+header img {
+    display: inline-block;
+    vertical-align: text-bottom;
+    width: 40px;
+    transform: rotate(40deg);
+    padding-right: 10px;
+}
+
+header h1 {
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px #222;
+    color: #fff;
+    font-size: 1.8em;
+}
+
+header li {
+    list-style-type: none;
+}
+
+header a {
+    display: block;
+    width: 160px;
+    padding: 8px 0;
+    text-align: center;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #ff6600;
+    border-radius: 12px 0 12px 0;
+    transition: all ease 0.4s;
+}
+
+header span.fa {
+    font-size: 1.2em;
+    padding-right: 10px;
+}
+
+header a:hover {
+    border-radius: 0 12px 0 12px;
+    background-color: #00CCFF;
+}
+
+/* Message de rappel respect des membres */
+#recall {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* Menu Membre */
+#displayUser {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ff6600;
+}
+
+#displayUser li, #displayUser a {
+    font-size: large;
+    color: #fff;
+    padding: 5px;
+}
+
+#displayUser li:first-child {
+    font-weight: bold;
+}
+
+#displayUser li {
+    list-style: none;
+}
+
+#displayUser a {
+    text-decoration: none;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+#displayUser a:hover {
+    background-color: #fff;
+    color: #ff6600;
+}
+
+/* Div global pages des comptes */
+#account {
+    width: 900px;
+    margin: 88px auto;
+    text-align: center;
+}
+
+/* Section page compte */
+#contentAccount {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Cadre description site */
+#descriptionSite {
+    width: 500px;
+}
+
+/* Conteneur img */
+#descriptionSite p:first-child {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+#descriptionSite p:first-child img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#descriptionSite p:nth-child(2) {
+    margin-top: 10px;
+}
+
+#descriptionSite p:last-child {
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Cadre formulaires */
+.formsAccount {
+    background-color: #eee;
+    border-radius: 5px;
+    width: 350px;
+}
+
+.formsAccount h1 {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Formulaires */
+.formsAccount form {
+    width: 250px;
+    margin: 20px auto;
+    font-size: 1.1em;
+}
+
+/* Labels formulaires */
+.formsAccount form label {
+    display: block;
+}
+
+.formsAccount form p + p {
+    margin-top: 10px;
+}
+
+/* Input formulaires */
+.formsAccount form input {
+    display: block;
+    margin-top: 5px;
+    width: 250px;
+    height: 22px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formsAccount form li {
+    display: block;
+    list-style-type: none;
+    font-size: 0.9em;
+    padding: 3px;
+    border: 1px solid #e6cbcf;
+    background-color: #f2dede;
+    color: #b94a48;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.formsAccount form input[type=checkbox] {
+    margin-top: 30px;
+}
+
+/* Boutons d'envoi des formulaires */
+.formsAccount form button {
+    display: block;
+    margin: 30px auto;
+    border:none;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    background:linear-gradient(135deg, #fad961 0%,#f76b1c 100%);
+    border-radius: .25rem;
+    padding: 10px 20px;
+    cursor:pointer
+}
+
+.formsAccount form button:hover {
+    animation: AnimationButtonAccount .8s ease-out
+}
+
+/* Div global pages membres */
+#pageUser {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Message flash */
+#success {
+    position: absolute;
+    top: 15px;
+    left: 30%; right: 30%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(250, 255, 189, 0.8);
+    font-weight: bold;
+    text-align: center;
+    list-style: none;
+    display: none; /* Fait disparaitre le message, il sera réafficher par JavaScript */
+}
+
+/* #formAddMessage = Conteneur formulaire ajout message */
+/* .formAddComment = Conteneurs formulaires ajout commentaire */
+#formMessage {
+    margin-bottom: 30px;
+    padding: 6px 12px 0 5px;
+    background-color: #f4f6f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#formMessage li {
+    display: inline-block;
+    width: 200px;
+    padding: 3px 0;
+    background-color: rgba(255, 147, 79, 0.4);
+    font-weight: bold;
+}
+
+#formMessage textarea, .formComment textarea {
+    display: inline-block;
+    vertical-align: middle;
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-size: 1em;
+    padding: 5px 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#formMessage button, .formComment button {
+    display: block;
+    border: none;
+    padding: 8px 13px;
+    margin: 10px auto;
+    background-color: #009900;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#formMessage button:hover, .formComment button:hover {
+    background-color: #ff6600;
+}
+
+.formComment textarea {
+    display: block;
+    width: 97%;
+    margin: 10px auto 0 auto;
+}
+
+.formComment button {
+    background-color: #ff6600;
+}
+
+.formComment button:hover {
+    background-color: #009900;
+}
+
+/* Conteneur du message, des commentaires et du formulaire d'ajout d'un commentaire */
+.messageComment {
+    margin: 20px 0 50px 0;
+    background-color: #E9EBEE;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* .message = Conteneur info message */
+/* .displayComment = Conteneur info commentaires */
+.message ul, .displayComment ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.message ul {
+    background-color: #333333;
+    border-radius: 5px 5px 0 0;
+}
+
+.message li, .displayComment li {
+    list-style: none;
+    font-size: 0.9em;
+    padding: 5px 0;
+}
+
+.message li {
+    color: #fff;
+}
+
+.message span, .displayComment span {
+    font-weight: bold;
+    color: #03a2d2;
+}
+
+.message p {
+    background-color: #fff;
+}
+
+.message p, .displayComment p {
+    padding: 8px 10px;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.message p:first-letter, .displayComment p:first-letter {
+    text-transform: capitalize;
+}
+
+/* Ajoute une bordure tiret en bas du message posté et de la liste des commentaires */
+.message:after, .formComment:before {
+    content:"";
+    display: block;
+    height: 1px;
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px dashed #060606;
+}
+
+.zeroComments {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    color: #ccc;
+    text-align: center;
+}
+
+.up, .down, .upComment {
+    display: block;
+    color: blue;
+    cursor: pointer;
+    margin: 5px 20px 5px 0;
+    text-align: right;
+}
+
+.up:hover, .down:hover {
+    text-decoration: underline;
+}
+
+.upComment {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: underline;
+    text-align: left;
+}
+
+.upComment:hover {
+    text-decoration: none;
+}
+
+/* .displayComment = Conteneur info commentaires */
+.displayComment {
+    padding: 0 20px;
+    margin: 5px 0;
+}
+
+.displayComment p {
+    display: inline-block;
+    min-width: 5%;
+    max-width: 91%;
+    padding: 10px 15px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 30px;
+}
+
+/* #textPost = intitulé "Dernier messages posté" */
+/* .littleMessage = Les petits message posté par les membres */
+#textPost, .littleMessage {
+    text-align: center;
+}
+
+.littleMessage {
+    font-size: 1.8em;
+    font-weight: bold;
+}

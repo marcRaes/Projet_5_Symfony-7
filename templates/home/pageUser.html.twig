@@ -1,0 +1,70 @@
+{% extends 'contentPageUser.html.twig' %}
+
+{% block messageUser %}
+
+	<div class="messageComment">
+
+		<div class="message">
+
+			<ul>
+				<li>Poster par :
+					<span class="pseudo">{{ messageComment.user.pseudo }}</span>
+				</li>
+				<li>Le :
+					<span>{{ messageComment.dateTimeRegistration|date('d-m-Y \à H:i') }}</span>
+				</li>
+			</ul>
+
+			{% if messageComment.content|length > 150 %}
+
+				<p>{{ messageComment.content }}</p>
+
+			{% else %}
+
+				<p class="littleMessage">{{ messageComment.content }}</p>
+
+			{% endif %}
+
+		</div>
+
+
+		{%  if messageComment.comments != null %}
+
+			<article class="comments" id="listComments">
+
+				{% set comments = messageComment.comments %}
+
+				{% for comment in comments %}
+
+					<div class="displayComment">
+						<ul>
+							<li>Poster par :
+								<span class="pseudo">{{ comment.user.pseudo }}</span>
+							</li>
+							<li>Le :
+								<span>{{ comment.dateTimeRegistration|date('d-m-Y \à H:i') }}</span>
+							</li>
+						</ul>
+
+						<p>{{ comment.content }}</p>
+
+					</div>
+
+				{% endfor %}
+
+			</article>
+
+		{% else %}
+
+			<span class="zeroComments">Aucun commentaire</span>
+
+		{% endif %}
+
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{{ asset('js/jsStyle.js') }}"></script>
+{% endblock %}

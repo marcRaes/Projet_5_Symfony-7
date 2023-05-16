@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, user-scalable=no">
+		<title>
+			{% block title %}SOS Harcel
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{# fonts #}
+			<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+			<link
+			href="https://fonts.googleapis.com/css?family=Kite+One" rel="stylesheet">
+			{# Styles CSS #}
+			<link
+			rel="stylesheet" href="{{ asset('css/style.css') }}">
+			{# Feuille de style CSS #}
+			<link
+			rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+			{# Style CSS mobile tablettes #}
+			<link
+			rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
+			{# FontAwesome #}
+			<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+		{% endblock %}
+	</head>
+	<body>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+		<header>
+
+			<h1><img src="{{ asset('images/logo.png') }}">Sos Harcel</h1>
+
+			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				<a href="{{ path('logout') }}" id="disconnect">
+					<span class="fa fa-sign-out"></span>Deconnexion</a>
+			{% else %}
+				{% if app.request.pathinfo == '/register' %}
+					<a href="{{ path('login') }}">
+						<span class="fa fa-user"></span>Se connecter</a>
+				{% else %}
+					<a href="{{ path('register') }}">
+						<span class="fa fa-user-plus"></span>S'inscrire</a>
+				{% endif %}
+			{% endif %}
+
+		</header>
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			<p id="recall">Ceci est un site de soutien pour les personnes victime de harcélement scolaire</p>
+			<ul id="displayUser">
+				<li>{{ app.user.pseudo }}</li>
+				{% if app.request.attributes.get('_route') == "pageUser" %}
+					<li>
+						<a href="{{ path('home') }}">Tous les messages</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{{ path('pageUser', {'id': app.user.id}) }}">Vos messages</a>
+					</li>
+				{% endif %}
+			</ul>
+		{% endif %}
+
+
+		{% block body %}{% endblock %}
+	</body>
+</html></div>{% block javascripts %}{% endblock %}</body></html>

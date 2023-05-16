@@ -1,0 +1,45 @@
+{% extends 'contentAccount.html.twig' %}
+
+{% block account %}
+	<div class="formsAccount">
+		<h1>Connexion</h1>
+
+		<form method="post">
+			{% for msg in app.session.flashBag.get('error') %}
+				<li>{{ msg }}</li>
+			{% endfor %}
+
+			{% if app.user %}
+				<div class="mb-3">
+					Vous êtes connecté en tant que
+					{{ app.user.userIdentifier }},
+					<a href="{{ path('logout') }}">Deconnexion</a>
+				</div>
+			{% endif %}
+
+			<p>
+				<label for="inputPseudo">Pseudo ou Adresse email</label>
+				<input type="pseudo" value="{{ last_username }}" name="pseudo" id="inputEmail" class="form-control" autocomplete="pseudo" required autofocus>
+			</p>
+			<p>
+				<label for="inputPassword">Mot de passe</label>
+				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+			</p>
+
+			<p>
+				<div class="checkbox mb-3">
+					<label>
+						<input type="checkbox" name="_remember_me">
+						Se souvenir de moi
+					</label>
+				</div>
+			</p>
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+			<button class="btn btn-lg btn-primary" type="submit">
+				Connexion
+			</button>
+		</form>
+	</div>
+{% endblock %}
