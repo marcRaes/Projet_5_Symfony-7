@@ -11,11 +11,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(groups: ["Registration"], fields: ['pseudo'], message: 'Ce pseudo n\'est pas disponible.')]
-#[UniqueEntity(groups: ["Registration"], fields: ['email'], message: 'Un membre est déjà enregistré avec cette adresse email.')]
+#[UniqueEntity(fields: ['pseudo'], message: 'Ce pseudo n\'est pas disponible.', groups: ["Registration"])]
+#[UniqueEntity(fields: ['email'], message: 'Un membre est déjà enregistré avec cette adresse email.', groups: ["Registration"])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __construct()

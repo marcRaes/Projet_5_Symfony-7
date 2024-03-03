@@ -7,15 +7,16 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportException;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Address;
 
 class MailerService
 {
-    private MailerInterface $mailer;
+    private TransportInterface $mailer;
     private UserRepository $userRepository;
 
-    public function __construct(MailerInterface $mailer, UserRepository $userRepository)
+    public function __construct(TransportInterface $mailer, UserRepository $userRepository)
     {
         $this->mailer = $mailer;
         $this->userRepository = $userRepository;
@@ -34,8 +35,8 @@ class MailerService
 
         try {
             $this->mailer->send($email);
-        } catch (TransportException $exception) {
-            throw $exception;
+        } catch (TransportExceptionInterface $exception) {
+            throw new TransportException($exception->getMessage());
         }
     }
 
@@ -53,8 +54,8 @@ class MailerService
 
         try {
             $this->mailer->send($email);
-        } catch (TransportException $exception) {
-            throw $exception;
+        } catch (TransportExceptionInterface $exception) {
+            throw new TransportException($exception->getMessage());
         }
     }
 }

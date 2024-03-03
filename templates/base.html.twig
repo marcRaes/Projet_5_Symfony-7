@@ -10,26 +10,22 @@
 		{% block stylesheets %}
 			{# fonts #}
 			<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-			<link
-			href="https://fonts.googleapis.com/css?family=Kite+One" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Kite+One" rel="stylesheet">
 			{# Styles CSS #}
-			<link
-			rel="stylesheet" href="{{ asset('css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('style/app.css') }}">
 			{# Feuille de style CSS #}
-			<link
-			rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+			<link rel="stylesheet" href="{{ asset('style/responsive.css') }}">
 			{# Style CSS mobile tablettes #}
-			<link
-			rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 			{# FontAwesome #}
-			<link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+			<link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
 		{% endblock %}
 	</head>
 	<body>
 
 		<header>
 
-			<h1><img src="{{ asset('images/logo.png') }}">Sos Harcel</h1>
+			<h1><img src="{{ asset('/images/logo.png') }}">Sos Harcel</h1>
 
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 				<a href="{{ path('logout') }}" id="disconnect">
@@ -63,5 +59,7 @@
 
 
 		{% block body %}{% endblock %}
+
+		{% block javascripts %}{% endblock %}
 	</body>
-</html></div>{% block javascripts %}{% endblock %}</body></html>
+</html>
