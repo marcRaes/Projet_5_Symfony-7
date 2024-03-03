@@ -58,7 +58,6 @@ class HomeController extends AbstractController
 
         if (isset($formAddComment) && $formAddComment->isSubmitted() && $formAddComment->isValid()) {
             $message = $this->messageRepository->findOneBy(['id' => $request->request->get('idMessage')]);
-
             $comment->setUser($this->getUser());
             $comment->setMessage($message);
             $this->commentRepository->save($comment, true);
@@ -80,7 +79,6 @@ class HomeController extends AbstractController
     {
         $listCommentMessageUser = $messageRepository->findBy(['user' => $id]);
 
-        // Appel de la vue
         return $this->render('home/pageUser.html.twig', ['listCommentMessageUser' => $listCommentMessageUser,]);
     }
 }

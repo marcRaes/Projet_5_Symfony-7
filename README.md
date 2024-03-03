@@ -1,6 +1,6 @@
 # Plateforme d'entraide contre le harcèlement scolaire
 
-Ce projet est une plateforme en ligne conçue pour fournir un soutien et une entraide aux personnes victimes de harcèlement scolaire. Le site web a été initialement développé sous Symfony 3.4 et a récemment été migré vers Symfony 6.4.
+Ce projet est une plateforme en ligne conçue pour fournir un soutien et une entraide aux personnes victimes de harcèlement scolaire. Le site web a été initialement développé sous Symfony 3.4 et a récemment été migré vers Symfony 7.0.
 
 ## Fonctionnalités principales
 
@@ -12,8 +12,8 @@ Ce projet est une plateforme en ligne conçue pour fournir un soutien et une ent
 
 ## Technologies utilisées
 
-- PHP 8.1 ou version ultérieure
-- Symfony 6.4
+- PHP 8.2 ou version ultérieure
+- Symfony 7.0
 - MySQL 5.7 ou une version ultérieure
 - Composer pour la gestion des dépendances
 
