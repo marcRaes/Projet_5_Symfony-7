@@ -8,16 +8,13 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			{# fonts #}
 			<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css?family=Kite+One" rel="stylesheet">
-			{# Styles CSS #}
+
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 			<link rel="stylesheet" href="{{ asset('style/app.css') }}">
-			{# Feuille de style CSS #}
 			<link rel="stylesheet" href="{{ asset('style/responsive.css') }}">
-			{# Style CSS mobile tablettes #}
-			<link rel="stylesheet" href="{{ asset('/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-			{# FontAwesome #}
+
 			<link rel="icon" type="image/png" href="{{ asset('/images/favicon.png') }}">
 		{% endblock %}
 	</head>
@@ -51,7 +48,7 @@
 					</li>
 				{% else %}
 					<li>
-						<a href="{{ path('pageUser', {'id': app.user.id}) }}">Vos messages</a>
+						<a href="{{ path('pageUser', {'userId': app.user.id}) }}">Vos messages</a>
 					</li>
 				{% endif %}
 			</ul>
