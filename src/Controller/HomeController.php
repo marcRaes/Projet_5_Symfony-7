@@ -8,6 +8,7 @@ use App\Form\CommentFormType;
 use App\Form\MessageFormType;
 use App\Repository\CommentRepository;
 use App\Repository\MessageRepository;
+use App\Repository\UserRepository;
 use App\Service\MailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,17 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    private MailerService $mailer;
-    private MessageRepository $messageRepository;
-    private CommentRepository $commentRepository;
-
-    public function __construct(MailerService $mailer, MessageRepository $messageRepository, CommentRepository $commentRepository)
-    {
-        $this->messageRepository = $messageRepository;
-        $this->commentRepository = $commentRepository;
-        $this->mailer = $mailer;
-    }
-
     #[Route('/', name: 'index')]
     public function index(): Response
     {
@@ -34,15 +24,17 @@ class HomeController extends AbstractController
     }
 
     #[Route('/home', name: 'home')]
-    public function home(Request $request): Response
+    public function home(Request $request, MessageRepository $messageRepository, CommentRepository $commentRepository, MailerService $mailer): Response
     {
-        $listCommentMessage = $this->messageRepository->findBy([], ['dateTimeRegistration' => 'DESC']);
+        $listCommentMessage = $messageRepository->findBy([], ['dateTimeRegistration' => 'DESC']);
         $message = new Message;
         $formAddMessage = $this->createForm(MessageFormType::class, $message);
         $formAddMessage->handleRequest($request);
 
         $formTab = [];
-        foreach ($listCommentMessage as $liste) {
+        $nbMessages = 0;
+        while($nbMessages <= count($listCommentMessage)) {
+            $nbMessages++;
             $comment = new Comment;
             $formAddComment = $this->createForm(CommentFormType::class, $comment);
             $formTab[] = $formAddComment->createView();
@@ -51,18 +43,18 @@ class HomeController extends AbstractController
 
         if ($formAddMessage->isSubmitted() && $formAddMessage->isValid()) {
             $message->setUser($this->getUser());
-            $this->messageRepository->save($message, true);
+            $messageRepository->save($message, true);
 
             return $this->redirectToRoute('home');
         }
 
         if (isset($formAddComment) && $formAddComment->isSubmitted() && $formAddComment->isValid()) {
-            $message = $this->messageRepository->findOneBy(['id' => $request->request->get('idMessage')]);
+            $message = $messageRepository->findOneBy(['id' => $request->request->get('idMessage')]);
             $comment->setUser($this->getUser());
             $comment->setMessage($message);
-            $this->commentRepository->save($comment, true);
+            $commentRepository->save($comment, true);
 
-            $this->mailer->sendCommentMail($comment);
+            $mailer->sendCommentMail($comment);
 
             return $this->redirectToRoute('home');
         }
@@ -74,11 +66,15 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'pageUser', requirements: ['id' => '\d+'])]
-    public function messageUserAction(int $id, MessageRepository $messageRepository)
+    #[Route('/{userId}', name: 'pageUser', requirements: ['userId' => '\d+'])]
+    public function messageUserAction(int $userId, UserRepository $userRepository): Response
     {
-        $listCommentMessageUser = $messageRepository->findBy(['user' => $id]);
+        $user = $userRepository->find($userId);
 
-        return $this->render('home/pageUser.html.twig', ['listCommentMessageUser' => $listCommentMessageUser,]);
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé.');
+        }
+
+        return $this->render('home/pageUser.html.twig', ['listCommentMessageUser' => $user->getMessages(),]);
     }
 }
